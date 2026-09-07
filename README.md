@@ -6,15 +6,15 @@
 
 <div align="center">
 
-  <a href="https://github.com/neldivad/wss-mining-pipeline/actions/workflows/capture-monthly.yml"><img alt="capture status" src="https://img.shields.io/github/actions/workflow/status/neldivad/wss-mining-pipeline/capture-monthly.yml?label=capture&style=flat-square"></a>
-  <a href="https://github.com/neldivad/wss-mining-pipeline/commits"><img alt="last capture" src="https://img.shields.io/github/last-commit/neldivad/wss-mining-pipeline?label=last%20capture&style=flat-square"></a>
-  <a href="https://github.com/neldivad/wss-mining-pipeline/blob/main/LICENSE"><img alt="licence" src="https://img.shields.io/github/license/neldivad/wss-mining-pipeline?style=flat-square"></a>
-  <a href="https://github.com/neldivad/wss-mining-pipeline"><img alt="stars" src="https://img.shields.io/github/stars/neldivad/wss-mining-pipeline?style=social"></a>
+  <a href="https://github.com/q3dresearch/wss-mining-pipeline/actions/workflows/capture-monthly.yml"><img alt="capture status" src="https://img.shields.io/github/actions/workflow/status/q3dresearch/wss-mining-pipeline/capture-monthly.yml?label=capture&style=flat-square"></a>
+  <a href="https://github.com/q3dresearch/wss-mining-pipeline/commits"><img alt="last capture" src="https://img.shields.io/github/last-commit/q3dresearch/wss-mining-pipeline?label=last%20capture&style=flat-square"></a>
+  <a href="https://github.com/q3dresearch/wss-mining-pipeline/blob/main/LICENSE"><img alt="licence" src="https://img.shields.io/github/license/q3dresearch/wss-mining-pipeline?style=flat-square"></a>
+  <a href="https://github.com/q3dresearch/wss-mining-pipeline"><img alt="stars" src="https://img.shields.io/github/stars/q3dresearch/wss-mining-pipeline?style=social"></a>
 
 </div>
 
 <p align="center">
-  <sub>fleet: <a href="https://github.com/neldivad/wss-engine">engine</a> · <a href="https://github.com/neldivad/wss-hugging-face">hugging face</a> · <a href="https://github.com/neldivad/wss-openrouter">openrouter</a> · <a href="https://github.com/neldivad/wss-cloud-footprint">cloud footprint</a> · <strong>mining</strong> · <a href="https://github.com/neldivad/wss-forest-harvest">forest</a> · <a href="https://github.com/neldivad/wss-food-trace">food</a></sub>
+  <sub>fleet: <a href="https://github.com/q3dresearch/wss-engine">engine</a> · <a href="https://github.com/q3dresearch/wss-hugging-face">hugging face</a> · <a href="https://github.com/q3dresearch/wss-openrouter">openrouter</a> · <a href="https://github.com/q3dresearch/wss-cloud-footprint">cloud footprint</a> · <strong>mining</strong> · <a href="https://github.com/q3dresearch/wss-forest-harvest">forest</a> · <a href="https://github.com/q3dresearch/wss-food-trace">food</a></sub>
 </p>
 
 Western Australia publishes the current state of **48,414 mine sites**. The
