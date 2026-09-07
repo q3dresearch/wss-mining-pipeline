@@ -1,4 +1,12 @@
 {
-  "disabled": [],
-  "generated_at": "2026-09-06T01:18:36Z"
+  "disabled": [
+    {
+      "consecutive_failures": 10,
+      "last_attempt_at": "2026-09-07T20:56:28Z",
+      "last_success_at": "2026-09-07T19:14:16Z",
+      "registry_file": "wa.tenements.live.yml",
+      "source_id": "wa.tenements.live"
+    }
+  ],
+  "generated_at": "2026-09-07T20:57:30Z"
 }

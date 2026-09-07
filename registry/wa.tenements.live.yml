@@ -1,6 +1,6 @@
 # Field shape verified against the live service on 2026-09-04.
 source_id: wa.tenements.live
-status: active
+status: auto_disabled  # was active; auto-disabled 2026-09-07 after 10 consecutive failures
 cadence: monthly
 schema_id: mining.v1
 
