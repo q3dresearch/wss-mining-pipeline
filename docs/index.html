@@ -4,14 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Mining Pipeline History (wss-mining-pipeline)</title>
-<meta name="description" content="Point-in-time captures from 1 source that do not keep their own history. Each capture stores the bytes as served, with a manifest row recording the URL, fetch time and SHA-256.">
+<meta name="description" content="Point-in-time captures from 2 sources that do not keep their own history. Each capture stores the bytes as served, with a manifest row recording the URL, fetch time and SHA-256.">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org/",
   "@type": "Dataset",
   "name": "Mining Pipeline History (wss-mining-pipeline)",
-  "description": "Point-in-time captures from 1 source that do not keep their own history. Each capture stores the bytes as served, with a manifest row recording the URL, fetch time and SHA-256.",
-  "url": "https://github.com/neldivad/wss-mining-pipeline",
+  "description": "Point-in-time captures from 2 sources that do not keep their own history. Each capture stores the bytes as served, with a manifest row recording the URL, fetch time and SHA-256.",
+  "url": "https://github.com/q3dresearch/wss-mining-pipeline",
   "license": "CC-BY-4.0",
   "isAccessibleForFree": true,
   "keywords": [
@@ -25,21 +25,31 @@
       "@type": "Person",
       "name": "neldivad",
       "url": "https://github.com/neldivad"
+    },
+    {
+      "@type": "Person",
+      "name": "q3dresearch",
+      "url": "https://github.com/q3dresearch"
     }
   ],
   "distribution": [
     {
       "@type": "DataDownload",
       "encodingFormat": "text/csv",
-      "contentUrl": "https://github.com/neldivad/wss-mining-pipeline/tree/main/data"
+      "contentUrl": "https://github.com/q3dresearch/wss-mining-pipeline/tree/main/data"
     }
   ],
-  "temporalCoverage": "2026-09-03/2026-09-04",
+  "temporalCoverage": "2026-09-03/2026-09-08",
   "isBasedOn": [
     {
       "@type": "Dataset",
       "name": "DMIRS Western Australia",
       "url": "https://public-services.slip.wa.gov.au/public/rest/services/SLIP_Public_Services/Industry_and_Mining/MapServer/0/query?where=site_code%3C%27S0005000%27&outFields=gid%2Csite_code%2Csite_stage%2Ctarget_com%2Csite_type_%2Clatitude%2Clongitude%2Cextract_da&returnGeometry=false&f=json"
+    },
+    {
+      "@type": "Dataset",
+      "name": "DMIRS Western Australia",
+      "url": "https://public-services.slip.wa.gov.au/public/rest/services/SLIP_Public_Services/Industry_and_Mining/MapServer/3/query?where=gid%3C7210000&outFields=gid%2Ctenid%2Cholder1%2Choldercnt%2Clegal_area%2Cunit_of_me%2Cextract_da&returnGeometry=false&f=json"
     }
   ]
 }
@@ -60,26 +70,47 @@
 </head>
 <body>
 <h1>Mining Pipeline History (wss-mining-pipeline)</h1>
-<p>Point-in-time captures from 1 source that do not keep their own history. Each capture stores the bytes as served, with a manifest row recording the URL, fetch time and SHA-256.</p>
-<p class="cov">History held: <strong>2026-09-03</strong> to <strong>2026-09-04</strong>.</p>
+<p>Point-in-time captures from 2 sources that do not keep their own history. Each capture stores the bytes as served, with a manifest row recording the URL, fetch time and SHA-256.</p>
+<p class="cov">History held: <strong>2026-09-03</strong> to <strong>2026-09-08</strong>.</p>
+
+
+<h2>Findings</h2>
+<p>Figures are rebuilt from the derived tables on every run; each one names the entities it is about so it can be acted on without a further query.</p>
+  <figure>
+    <a href="charts/fleet-state.svg"><img src="charts/fleet-state.svg" alt="Fleet state" loading="lazy"></a>
+    <figcaption><strong>Fleet state</strong></figcaption>
+  </figure>
+  <figure>
+    <a href="charts/pipeline-depth.svg"><img src="charts/pipeline-depth.svg" alt="Pipeline depth" loading="lazy"></a>
+    <figcaption><strong>Pipeline depth</strong></figcaption>
+  </figure>
+  <figure>
+    <a href="charts/restart-clock.svg"><img src="charts/restart-clock.svg" alt="Restart clock" loading="lazy"></a>
+    <figcaption><strong>Restart clock</strong></figcaption>
+  </figure>
+  <figure>
+    <a href="charts/stage-transitions.svg"><img src="charts/stage-transitions.svg" alt="Stage transitions" loading="lazy"></a>
+    <figcaption><strong>Stage transitions</strong></figcaption>
+  </figure>
 
 <h2>What is captured</h2>
 <table>
   <thead><tr><th>source</th><th>publisher</th><th>cadence</th><th>terms</th></tr></thead>
   <tbody>
       <tr><td><code>wa.minedex.sites</code></td><td>DMIRS Western Australia</td><td>monthly</td><td>Creative Commons Attribution 4.0 (WA SLIP public services); see https://catalogue.data.wa.gov.au/dataset/minedex</td></tr>
+      <tr><td><code>wa.tenements.live</code></td><td>DMIRS Western Australia</td><td>monthly</td><td>Creative Commons Attribution 4.0 (WA SLIP public services); see https://catalogue.data.wa.gov.au/dataset/mining-tenements-dmirs-003</td></tr>
   </tbody>
 </table>
 
 <h2>Using it</h2>
 <p>Derived tables are CSV under <code>data/</code> in
-<a href="https://github.com/neldivad/wss-mining-pipeline">the repository</a>; the bytes they came from are under
+<a href="https://github.com/q3dresearch/wss-mining-pipeline">the repository</a>; the bytes they came from are under
 <code>raw/</code>, and <code>SOURCES.md</code> lists every source URL.</p>
 <p>Every observation carries <code>source_id</code> and <code>raw_ref</code>. The
 matching manifest row holds that <code>raw_ref</code> with the URL, the fetch
 timestamp and a SHA-256 of exactly what came back, so any number here traces to
 the bytes it came from.</p>
-<p>Cite this dataset by its repository and the date you took it from: <a href="https://github.com/neldivad/wss-mining-pipeline">https://github.com/neldivad/wss-mining-pipeline</a>, accessed 2026-09-04.</p>
+<p>Cite this dataset by its repository and the date you took it from: <a href="https://github.com/q3dresearch/wss-mining-pipeline">https://github.com/q3dresearch/wss-mining-pipeline</a>, accessed 2026-09-08.</p>
 
 <footer>
 <p>Repository code and captured data are licensed separately. This dataset is
