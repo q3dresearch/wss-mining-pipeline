@@ -1,6 +1,24 @@
 # Field shape verified against the live service on 2026-09-04.
+# GID WINDOWS GO STALE, and this is the second time. The layer was rebuilt and
+# every gid reassigned: windows written for <7,150,000 .. >=7,168,000 now sit
+# entirely below a range that runs 7,204,466 - 7,234,931. Four windows matched
+# nothing (quarantined too_small) and the open-ended one matched all 30,466 and
+# hit the 10,000 cap (quarantined contains_forbidden_text). Both failure modes
+# were caught, which is the design working -- the numbers were simply old.
+#
+# TO RE-BASE, when it happens again:
+#   .../MapServer/3/query?where=1%3D1&returnCountOnly=true&f=json
+#   .../MapServer/3/query?where=1%3D1&outStatistics=[{"statisticType":"min",
+#       "onStatisticField":"gid","outStatisticFieldName":"mn"}, ...max...]
+# then cut the range into windows of roughly 5,000 against the 10,000 cap, and
+# COUNT each one before committing to it.
+#
+# Not offset pagination, though the service supports it: resultRecordCount
+# returns exceededTransferLimit:true on every full page, and that string is the
+# gate that tells us a window is overflowing. Paginating would mean deleting the
+# tripwire that found this.
 source_id: wa.tenements.live
-status: auto_disabled  # was active; auto-disabled 2026-09-07 after 10 consecutive failures
+status: active  # was active; auto-disabled 2026-09-07 after 10 consecutive failures
 cadence: monthly
 schema_id: mining.v1
 
@@ -41,22 +59,18 @@ notes: >-
 storage: git
 
 endpoints:
-  - url: "https://public-services.slip.wa.gov.au/public/rest/services/SLIP_Public_Services/Industry_and_Mining/MapServer/3/query?where=gid%3C7150000&outFields=gid%2Ctenid%2Cholder1%2Choldercnt%2Clegal_area%2Cunit_of_me%2Cextract_da&returnGeometry=false&f=json"
-    delay_seconds: 3
-    timeout_seconds: 90
-  - url: "https://public-services.slip.wa.gov.au/public/rest/services/SLIP_Public_Services/Industry_and_Mining/MapServer/3/query?where=gid%3E%3D7150000%20AND%20gid%3C7156000&outFields=gid%2Ctenid%2Cholder1%2Choldercnt%2Clegal_area%2Cunit_of_me%2Cextract_da&returnGeometry=false&f=json"
-    delay_seconds: 3
-    timeout_seconds: 90
-  - url: "https://public-services.slip.wa.gov.au/public/rest/services/SLIP_Public_Services/Industry_and_Mining/MapServer/3/query?where=gid%3E%3D7156000%20AND%20gid%3C7162000&outFields=gid%2Ctenid%2Cholder1%2Choldercnt%2Clegal_area%2Cunit_of_me%2Cextract_da&returnGeometry=false&f=json"
-    delay_seconds: 3
-    timeout_seconds: 90
-  - url: "https://public-services.slip.wa.gov.au/public/rest/services/SLIP_Public_Services/Industry_and_Mining/MapServer/3/query?where=gid%3E%3D7162000%20AND%20gid%3C7168000&outFields=gid%2Ctenid%2Cholder1%2Choldercnt%2Clegal_area%2Cunit_of_me%2Cextract_da&returnGeometry=false&f=json"
-    delay_seconds: 3
-    timeout_seconds: 90
-  - url: "https://public-services.slip.wa.gov.au/public/rest/services/SLIP_Public_Services/Industry_and_Mining/MapServer/3/query?where=gid%3E%3D7168000&outFields=gid%2Ctenid%2Cholder1%2Choldercnt%2Clegal_area%2Cunit_of_me%2Cextract_da&returnGeometry=false&f=json"
-    delay_seconds: 3
-    timeout_seconds: 90
-
+  - url: "https://public-services.slip.wa.gov.au/public/rest/services/SLIP_Public_Services/Industry_and_Mining/MapServer/3/query?where=gid%3C7210000&outFields=gid%2Ctenid%2Cholder1%2Choldercnt%2Clegal_area%2Cunit_of_me%2Cextract_da&returnGeometry=false&f=json"
+    delay_seconds: 2
+  - url: "https://public-services.slip.wa.gov.au/public/rest/services/SLIP_Public_Services/Industry_and_Mining/MapServer/3/query?where=gid%3E%3D7210000+AND+gid%3C7215000&outFields=gid%2Ctenid%2Cholder1%2Choldercnt%2Clegal_area%2Cunit_of_me%2Cextract_da&returnGeometry=false&f=json"
+    delay_seconds: 2
+  - url: "https://public-services.slip.wa.gov.au/public/rest/services/SLIP_Public_Services/Industry_and_Mining/MapServer/3/query?where=gid%3E%3D7215000+AND+gid%3C7220000&outFields=gid%2Ctenid%2Cholder1%2Choldercnt%2Clegal_area%2Cunit_of_me%2Cextract_da&returnGeometry=false&f=json"
+    delay_seconds: 2
+  - url: "https://public-services.slip.wa.gov.au/public/rest/services/SLIP_Public_Services/Industry_and_Mining/MapServer/3/query?where=gid%3E%3D7220000+AND+gid%3C7225000&outFields=gid%2Ctenid%2Cholder1%2Choldercnt%2Clegal_area%2Cunit_of_me%2Cextract_da&returnGeometry=false&f=json"
+    delay_seconds: 2
+  - url: "https://public-services.slip.wa.gov.au/public/rest/services/SLIP_Public_Services/Industry_and_Mining/MapServer/3/query?where=gid%3E%3D7225000+AND+gid%3C7230000&outFields=gid%2Ctenid%2Cholder1%2Choldercnt%2Clegal_area%2Cunit_of_me%2Cextract_da&returnGeometry=false&f=json"
+    delay_seconds: 2
+  - url: "https://public-services.slip.wa.gov.au/public/rest/services/SLIP_Public_Services/Industry_and_Mining/MapServer/3/query?where=gid%3E%3D7230000&outFields=gid%2Ctenid%2Cholder1%2Choldercnt%2Clegal_area%2Cunit_of_me%2Cextract_da&returnGeometry=false&f=json"
+    delay_seconds: 2
 gates:
   expect_status: 200
   min_bytes: 50000
