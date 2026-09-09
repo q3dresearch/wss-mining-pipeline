@@ -26,6 +26,21 @@ from datetime import date
 from pathlib import Path
 from xml.sax.saxutils import escape
 
+
+def _open_partition(path):
+    """Open a derived partition, gzipped or not.
+
+    Engine v0.6.34 made `derived/observations/*.csv.gz` the written form. Every
+    reader in this repo went on globbing `*.csv`, found nothing, and said "no
+    observations yet -- run capture + derive first" over a full archive. Stdlib
+    only, so `head`/`zcat` remain the only tools a reader needs.
+    """
+    import gzip
+    import io
+    if str(path).endswith(".gz"):
+        return io.TextIOWrapper(gzip.open(path, "rb"), encoding="utf-8", newline="")
+    return open(path, encoding="utf-8", newline="")
+
 REPO = Path(__file__).resolve().parents[1]
 OUT = REPO / "examples" / "charts"
 
@@ -72,8 +87,8 @@ def save(parts, name):
 def load():
     """{observed_at: {entity: {metric: value}}}, deduplicated on captured_at."""
     seen = {}
-    for part in sorted((REPO / "derived" / "observations").glob("*.csv")):
-        with part.open(encoding="utf-8", newline="") as fh:
+    for part in sorted((REPO / "derived" / "observations").glob("*.csv*")):
+        with _open_partition(part) as fh:
             for r in csv.DictReader(fh):
                 k = (r["observed_at"], r["entity_id"], r["metric"])
                 if k not in seen or r["captured_at"] > seen[k][0]:
@@ -192,13 +207,35 @@ def chart_pipeline_depth(snap, as_of):
     save(p, "pipeline-depth.svg")
 
 
+def current(data):
+    """One snapshot: the newest value per (entity, metric) across every date.
+
+    NOT `data[max(dates)]`. That assumed one observed_at per capture, which is
+    true only while every source carries its own "as of" stamp. wa.minedex.sites
+    does (`extract_da`, one date for 65,175 rows); wa.tenements.live does not, so
+    the parser correctly falls back to each endpoint's fetch time and 84
+    endpoints produce 84 distinct observed_at values. `data[max(dates)]` then
+    picked the last endpoint fetched in the last run -- a handful of tenements,
+    zero mines -- and every mine chart drew from an empty dict.
+    """
+    out = defaultdict(dict)
+    best = {}
+    for obs in sorted(data):
+        for ent, attrs in data[obs].items():
+            for metric, val in attrs.items():
+                k = (ent, metric)
+                if k not in best or obs >= best[k]:
+                    best[k], out[ent][metric] = obs, val
+    return out
+
+
 def main():
     data = load()
     dates = sorted(data)
     if not dates:
         print("  no observations yet — run wss capture && wss derive")
         return
-    snap, as_of = data[dates[-1]], dates[-1][:10]
+    snap, as_of = current(data), dates[-1][:10]
     chart_fleet_state(snap, as_of)
     chart_pipeline_depth(snap, as_of)
     placeholder("stage-transitions.svg",

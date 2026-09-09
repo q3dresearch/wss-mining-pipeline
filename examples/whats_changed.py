@@ -15,14 +15,29 @@ import csv
 from collections import defaultdict
 from pathlib import Path
 
+
+def _open_partition(path):
+    """Open a derived partition, gzipped or not.
+
+    Engine v0.6.34 made `derived/observations/*.csv.gz` the written form. Every
+    reader in this repo went on globbing `*.csv`, found nothing, and said "no
+    observations yet -- run capture + derive first" over a full archive. Stdlib
+    only, so `head`/`zcat` remain the only tools a reader needs.
+    """
+    import gzip
+    import io
+    if str(path).endswith(".gz"):
+        return io.TextIOWrapper(gzip.open(path, "rb"), encoding="utf-8", newline="")
+    return open(path, encoding="utf-8", newline="")
+
 REPO = Path(__file__).resolve().parents[1]
 
 
 def latest_by_date(metric: str) -> dict[str, dict[str, str]]:
     """{observed_at: {entity_id: value}}, deduplicated on newest captured_at."""
     seen: dict[tuple[str, str], tuple[str, str]] = {}
-    for part in sorted((REPO / "derived" / "observations").glob("*.csv")):
-        with part.open(encoding="utf-8", newline="") as fh:
+    for part in sorted((REPO / "derived" / "observations").glob("*.csv*")):
+        with _open_partition(part) as fh:
             for row in csv.DictReader(fh):
                 if row["metric"] != metric:
                     continue

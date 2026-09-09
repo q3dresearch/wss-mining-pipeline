@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="900" height="858" viewBox="0 0 900 858">
 <rect x="0.0" y="0.0" width="900.0" height="858.0" fill="#fcfcfb"/>
 <text x="38.0" y="46.0" font-family='system-ui, -apple-system, "Segoe UI", sans-serif' font-size="20" fill="#0b0b0b" text-anchor="start" font-weight="600" style="">What is running, and what is switched off</text>
-<text x="38.0" y="70.0" font-family='system-ui, -apple-system, "Segoe UI", sans-serif' font-size="13" fill="#52514e" text-anchor="start" font-weight="normal" style="">Western Australian mine fleet by commodity, 2026-09-02. Bar is the idled share of the developed fleet.</text>
+<text x="38.0" y="70.0" font-family='system-ui, -apple-system, "Segoe UI", sans-serif' font-size="13" fill="#52514e" text-anchor="start" font-weight="normal" style="">Western Australian mine fleet by commodity, 2026-09-07. Bar is the idled share of the developed fleet.</text>
 <text x="38.0" y="90.0" font-family='system-ui, -apple-system, "Segoe UI", sans-serif' font-size="11.5" fill="#898781" text-anchor="start" font-weight="normal" style="">Care and maintenance restarts in months. Proposed capacity arrives in years.</text>
 <text x="250.0" y="124.0" font-family='system-ui, -apple-system, "Segoe UI", sans-serif' font-size="10" fill="#898781" text-anchor="start" font-weight="600" style="">IDLED SHARE</text>
 <text x="636.0" y="124.0" font-family='system-ui, -apple-system, "Segoe UI", sans-serif' font-size="10" fill="#2a78d6" text-anchor="end" font-weight="600" style="">OPERATING</text>
