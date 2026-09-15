@@ -1,0 +1,169 @@
+{
+  "generated_at": "2026-09-15T13:15:04Z",
+  "note": "Inferred from the derived rows by `wss schema`, not hand-written. Regenerate after any derive.",
+  "sources": {
+    "wa.minedex.sites": {
+      "source_id": "wa.minedex.sites",
+      "schema_id": "mining.v1",
+      "cadence": "monthly",
+      "licence": "Creative Commons Attribution 4.0 (WA SLIP public services); see https://catalogue.data.wa.gov.au/dataset/minedex",
+      "personal_data": "none",
+      "storage": "git",
+      "publisher": "DMIRS Western Australia",
+      "publisher_tier": "first_party",
+      "endpoints": 12
+    },
+    "wa.tenements.live": {
+      "source_id": "wa.tenements.live",
+      "schema_id": "mining.v1",
+      "cadence": "monthly",
+      "licence": "Creative Commons Attribution 4.0 (WA SLIP public services); see https://catalogue.data.wa.gov.au/dataset/mining-tenements-dmirs-003",
+      "personal_data": "parties_only",
+      "storage": "git",
+      "publisher": "DMIRS Western Australia",
+      "publisher_tier": "first_party",
+      "endpoints": 6
+    }
+  },
+  "observations": {
+    "rows": 317379,
+    "columns": [
+      "series_id",
+      "entity_id",
+      "observed_at",
+      "captured_at",
+      "metric",
+      "value",
+      "unit",
+      "source_id",
+      "raw_ref",
+      "parser_version"
+    ],
+    "partitions": [
+      "2026-09.csv.gz"
+    ],
+    "series": {
+      "wa.minedex.sites": {
+        "rows": 195517,
+        "entities": 48414,
+        "entity_id_samples": [
+          "site:wa:S0000001",
+          "site:wa:S0000002",
+          "site:wa:S0000005"
+        ],
+        "metrics": [
+          "commodity",
+          "site_type",
+          "stage"
+        ]
+      },
+      "wa.tenements.live": {
+        "rows": 121862,
+        "entities": 30483,
+        "entity_id_samples": [
+          "tenement:wa:AG 7000003",
+          "tenement:wa:AG 7000004",
+          "tenement:wa:AG 7000005"
+        ],
+        "metrics": [
+          "area",
+          "holder"
+        ]
+      }
+    },
+    "parser_versions": [
+      "2"
+    ]
+  },
+  "metrics": {
+    "area": {
+      "rows": 60931,
+      "unit": "HA.",
+      "type": "number",
+      "series": [
+        "wa.tenements.live"
+      ],
+      "entities": 30483,
+      "distinct_values": 15089,
+      "empty": 0,
+      "min": "0.01",
+      "max": "702261.0",
+      "samples": [
+        "0.01",
+        "0.02",
+        "0.0243"
+      ]
+    },
+    "commodity": {
+      "rows": 65167,
+      "unit": "",
+      "type": "text",
+      "series": [
+        "wa.minedex.sites"
+      ],
+      "entities": 48406,
+      "distinct_values": 49,
+      "empty": 0,
+      "samples": [
+        "ALUNITE",
+        "ANDALUSITE - KYANITE - SILLIMANITE - CORUNDUM",
+        "ANTIMONY"
+      ]
+    },
+    "holder": {
+      "rows": 60931,
+      "unit": "",
+      "type": "text",
+      "series": [
+        "wa.tenements.live"
+      ],
+      "entities": 30483,
+      "distinct_values": 3607,
+      "empty": 0,
+      "samples": [
+        "1 BRUNSWICK BAY SE51 PERTH PTY LTD",
+        "1 DARWIN SD52 PERTH PTY LTD",
+        "1 HAMERSLEY RANGE SF50 PERTH PTY LTD"
+      ]
+    },
+    "site_type": {
+      "rows": 65175,
+      "unit": "",
+      "type": "text",
+      "series": [
+        "wa.minedex.sites"
+      ],
+      "entities": 48414,
+      "distinct_values": 9,
+      "empty": 0,
+      "samples": [
+        "Deposit",
+        "Geological Observation",
+        "Infrastructure"
+      ]
+    },
+    "stage": {
+      "rows": 65175,
+      "unit": "",
+      "type": "text",
+      "series": [
+        "wa.minedex.sites"
+      ],
+      "entities": 48414,
+      "distinct_values": 6,
+      "empty": 0,
+      "samples": [
+        "Care and Maintenance",
+        "Operating",
+        "Proposed"
+      ]
+    }
+  },
+  "raw": {
+    "files": 28,
+    "bytes_on_disk": 13403453,
+    "capture_dates": 4,
+    "first_capture": "2026-09-03T17:56:38Z",
+    "last_capture": "2026-09-08T15:42:22Z"
+  }
+}
