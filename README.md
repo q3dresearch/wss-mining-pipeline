@@ -151,8 +151,13 @@ only — the one config it may touch is flipping a repeatedly-failing source to
 ## Licences
 
 Code is MIT ([LICENSE](LICENSE)); data in `raw/`, `manifest/` and `derived/` is
-CC-BY-4.0 ([LICENSE-DATA](LICENSE-DATA)), citation in
-[CITATION.cff](CITATION.cff). Captured content remains subject to the
-publisher's own terms.
+**CC BY 4.0, passed through from WA SLIP** ([LICENSE-DATA](LICENSE-DATA)),
+citation in [CITATION.cff](CITATION.cff). Unlike most of this fleet, the grant
+is real: Western Australia publishes both sources under CC BY 4.0, and CC BY
+permits redistribution on the same terms.
+
+Attribution is a **licence condition** here, not a courtesy — credit the
+Government of Western Australia (Department of Mines, Industry Regulation and
+Safety), and do not imply the State endorses your use.
 
 Topics: `git-scraping` · `open-data` · `point-in-time-data` · `mining` · `dataset`

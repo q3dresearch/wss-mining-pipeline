@@ -10,6 +10,7 @@ authors:
     website: "https://github.com/neldivad"
   - name: "q3dresearch"
     website: "https://github.com/q3dresearch"
+# Upstream WA SLIP grants CC BY 4.0, so this pass-through is correct. Attribution required.
 license: CC-BY-4.0
 keywords:
   - git-scraping
