@@ -148,6 +148,23 @@ active, so infrastructure never changes when sources do. The bot commits data
 only — the one config it may touch is flipping a repeatedly-failing source to
 `auto_disabled`, with an issue explaining why.
 
+## Questions this exists to answer
+
+![All 6 questions here are answered or on a clock.](examples/charts/maturity.svg)
+
+**5 of these 6 are answered from captures already held.** 1 become answerable only as the series lengthens — the plate shows when. Every other one is on the clock, so the plate is a schedule rather than a wish list.
+
+
+| # | question | status |
+| --- | --- | --- |
+| Q1 | What is running, and what is switched off? | **answered** → [fleet state](examples/charts/fleet-state.svg) |
+| Q2 | Which commodities are proposing rather than producing? | **answered** → [pipeline depth](examples/charts/pipeline-depth.svg) |
+| Q3 | How long does a mothballed mine wait before restarting? | **answered** → [restart clock](examples/charts/restart-clock.svg) |
+| Q4 | Which mines moved between stages, and where to? | **answered** → [stage transitions](examples/charts/stage-transitions.svg) |
+| Q5 | Does a site's stage history survive a layer rebuild? | **answered — not on `gid`.** On 2026-09-03 the layer grew from 10,004 to 48,414 rows and every `gid` was reassigned; `site_code` is the stable identity. *No figure: this is a key choice, recorded in the registry* |
+| Q6 | Which sites change stage, and how fast? | needs 2+ captures. **The reason for capturing** — DMIRS publishes the current stage and no prior one |
+
+
 ## Figures
 
 Built by the scripts in [`examples/`](examples/), from the captures in this
