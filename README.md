@@ -148,6 +148,18 @@ active, so infrastructure never changes when sources do. The bot commits data
 only — the one config it may touch is flipping a repeatedly-failing source to
 `auto_disabled`, with an issue explaining why.
 
+## Figures
+
+Built by the scripts in [`examples/`](examples/), from the captures in this
+repository. Each caption is the figure's own title — nothing is restated here
+that the figure does not already say.
+
+**How long a mothballed mine waits**
+
+![How long a mothballed mine waits](examples/charts/restart-clock.svg)
+
+Months between entering care and maintenance and restarting — or being written off.
+
 ## Licences
 
 Code is MIT ([LICENSE](LICENSE)); data in `raw/`, `manifest/` and `derived/` is
